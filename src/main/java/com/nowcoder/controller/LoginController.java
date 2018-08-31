@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -35,7 +36,7 @@ public class LoginController {
                       @RequestParam(value = "rememberme",defaultValue = "false")boolean rememberme,
                       HttpServletResponse response){
         try {
-            Map<String,Object> map = userService.rigster(username,password);
+            Map<String,Object> map = userService.register(username,password);
             if (map.containsKey("ticket")) {
                 Cookie cookie =new Cookie("ticket",map.get("ticket").toString());
                 cookie.setPath("/");
@@ -90,5 +91,9 @@ public class LoginController {
             return "login";
         }
     }
-
+    @RequestMapping(path = {"/logout"},method = {RequestMethod.GET,RequestMethod.POST})
+    public String logout(@CookieValue("ticket")String ticket){
+        userService.logout(ticket);
+        return "redirect:/";
+    }
 }

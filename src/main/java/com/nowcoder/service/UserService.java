@@ -30,7 +30,7 @@ public class UserService {
         return userDAO.selectById(id);
     }
 
-    public Map<String, Object> rigster(String username, String password) {
+    public Map<String, Object> register(String username, String password) {
         Map<String,Object> map = new HashMap<>();
         if (StringUtils.isBlank(username)) {
             map.put("msg","用户名不能为空");
@@ -90,5 +90,9 @@ public class UserService {
         String ticket = addLoginTicket(user.getId());
         map.put("ticket",ticket);
         return map;
+    }
+
+    public void logout(String ticket) {
+        loginTicketDAO.updateStatus(ticket,1);
     }
 }
