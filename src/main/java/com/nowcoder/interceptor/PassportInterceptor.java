@@ -16,19 +16,19 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
 
 /**
- * @Date: 18-8-31
- * @version： V1.0
- * @Author: Chandler
- * @Description: ${todo}
+ * @program: wenda
+ * @Date: 2018/8/30
+ * @Author: chandler
+ * @Description:
  */
 @Component
 public class PassportInterceptor implements HandlerInterceptor {
 
     @Autowired
-    private UserDAO userDAO;
+    private LoginTicketDAO loginTicketDAO;
 
     @Autowired
-    private LoginTicketDAO loginTicketDAO;
+    private UserDAO userDAO;
 
     @Autowired
     private HostHolder hostHolder;
@@ -40,26 +40,27 @@ public class PassportInterceptor implements HandlerInterceptor {
             for (Cookie cookie : httpServletRequest.getCookies()) {
                 if (cookie.getName().equals("ticket")) {
                     ticket = cookie.getValue();
-                    return true;
+                    break;
                 }
             }
         }
+
         if (ticket != null) {
             LoginTicket loginTicket = loginTicketDAO.selectByTicket(ticket);
             if (loginTicket == null || loginTicket.getExpired().before(new Date()) || loginTicket.getStatus() != 0) {
                 return true;
             }
-            User user = userDAO.selectById(loginTicket.getUserId());
-            hostHolder.setUsers(user);
-        }
 
+            User user = userDAO.selectById(loginTicket.getUserId());
+            hostHolder.setUser(user);
+        }
         return true;
     }
 
     @Override
     public void postHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, ModelAndView modelAndView) throws Exception {
-        if (modelAndView != null && hostHolder.getUsers() != null) {
-            modelAndView.addObject("user", hostHolder.getUsers());
+        if (modelAndView != null && hostHolder.getUser() != null) {
+            modelAndView.addObject("user", hostHolder.getUser());
         }
     }
 

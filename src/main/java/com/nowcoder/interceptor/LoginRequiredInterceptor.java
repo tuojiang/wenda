@@ -10,21 +10,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * @Date: 18-8-31
- * @version： V1.0
- * @Author: Chandler
- * @Description: ${todo}
+ * @program: wenda
+ * @Date: 2018/8/30
+ * @Author: chandler
+ * @Description:
  */
 @Component
 public class LoginRequiredInterceptor implements HandlerInterceptor {
 
     @Autowired
-    HostHolder hostHolder;
+    private HostHolder hostHolder;
 
     @Override
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o) throws Exception {
-        if (hostHolder.getUsers() == null) {
-            httpServletResponse.sendRedirect("/reglogin?next="+httpServletRequest.getRequestURI());
+        if (hostHolder.getUser() == null) {
+            httpServletResponse.sendRedirect("/reglogin?next=" + httpServletRequest.getRequestURI());
             return false;
         }
         return true;
@@ -32,11 +32,9 @@ public class LoginRequiredInterceptor implements HandlerInterceptor {
 
     @Override
     public void postHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, ModelAndView modelAndView) throws Exception {
-
     }
 
     @Override
     public void afterCompletion(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, Exception e) throws Exception {
-
     }
 }

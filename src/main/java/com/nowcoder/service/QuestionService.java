@@ -9,7 +9,10 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 /**
- * Created by nowcoder on 2016/7/15.
+ * @program: wenda
+ * @Date: 2018/8/30
+ * @Author: chandler
+ * @Description:
  */
 @Service
 public class QuestionService {

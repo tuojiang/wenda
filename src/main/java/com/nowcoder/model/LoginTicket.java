@@ -3,17 +3,22 @@ package com.nowcoder.model;
 import java.util.Date;
 
 /**
- * @program: wenda
- * @Date: 2018/8/30
- * @Author: chandler
- * @Description:
+ * Created by nowcoder on 2016/7/3.
  */
 public class LoginTicket {
     private int id;
     private int userId;
     private Date expired;
-    private int status;
+    private int status;// 0有效，1无效
     private String ticket;
+
+    public String getTicket() {
+        return ticket;
+    }
+
+    public void setTicket(String ticket) {
+        this.ticket = ticket;
+    }
 
     public int getId() {
         return id;
@@ -45,13 +50,5 @@ public class LoginTicket {
 
     public void setStatus(int status) {
         this.status = status;
-    }
-
-    public String getTicket() {
-        return ticket;
-    }
-
-    public void setTicket(String ticket) {
-        this.ticket = ticket;
     }
 }

@@ -1,16 +1,13 @@
 package com.nowcoder.util;
 
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.security.MessageDigest;
+import java.util.Map;
 
 /**
- * @program: wenda
- * @Date: 2018/8/30
- * @Author: chandler
- * @Description:
+ * Created by nowcoder on 2016/7/3.
  */
 public class WendaUtil {
     private static final Logger logger = LoggerFactory.getLogger(WendaUtil.class);

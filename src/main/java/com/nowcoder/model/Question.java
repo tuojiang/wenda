@@ -3,10 +3,7 @@ package com.nowcoder.model;
 import java.util.Date;
 
 /**
- * @program: zsk
- * @Date: 2018/8/28
- * @Author: chandler
- * @Description:
+ * Created by nowcoder on 2016/7/15.
  */
 public class Question {
     private int id;
