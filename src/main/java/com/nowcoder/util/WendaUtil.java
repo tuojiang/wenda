@@ -1,5 +1,7 @@
 package com.nowcoder.util;
 
+import com.alibaba.fastjson.JSONObject;
+import com.fasterxml.jackson.databind.util.JSONPObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -10,6 +12,9 @@ import java.util.Map;
  * Created by nowcoder on 2016/7/3.
  */
 public class WendaUtil {
+
+    public static int ANONYMOUS_USERID = 3;
+
     private static final Logger logger = LoggerFactory.getLogger(WendaUtil.class);
 
     public static String MD5(String key) {
@@ -38,5 +43,26 @@ public class WendaUtil {
             logger.error("生成MD5失败", e);
             return null;
         }
+    }
+
+    public static String getJSONString(int code) {
+        JSONObject json = new JSONObject();
+        json.put("code",code);
+        return json.toJSONString();
+    }
+
+    public static String getJSONString(int code, String msg) {
+        JSONObject json = new JSONObject();
+        json.put("code",code);
+        json.put("msg",msg);
+        return json.toJSONString();
+    }
+    public static String getJsonString(int code,Map<String,Object> maps){
+        JSONObject json = new JSONObject();
+        json.put("code",code);
+        for (Map.Entry<String,Object> entity : maps.entrySet()){
+            json.put(entity.getKey(),entity.getValue());
+        }
+        return json.toJSONString();
     }
 }
