@@ -2,9 +2,7 @@ package com.nowcoder.service;
 
 import com.nowcoder.dao.QuestionDAO;
 import com.nowcoder.model.Question;
-import org.apache.commons.lang.StringEscapeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.web.util.HtmlUtils;
 
@@ -41,5 +39,8 @@ public class QuestionService {
 
     public Question getQuestionById(int qid) {
         return questionDAO.getById(qid);
+    }
+    public int updateCommentCount(int id, int commentCount){
+        return questionDAO.updateCommentCount(id,commentCount);
     }
 }

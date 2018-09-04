@@ -1,5 +1,7 @@
 package com.nowcoder.model;
 
+import java.util.Date;
+
 /**
  * @program: wenda
  * @Date: 2018/8/30
@@ -11,8 +13,17 @@ public class Message {
     private int fromId;
     private int toId;
     private String content;
+    private Date createdDate;
     private int hasRead;
     private String conversationId;
+
+    public Date getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(Date createdDate) {
+        this.createdDate = createdDate;
+    }
 
     public int getId() {
         return id;
