@@ -26,8 +26,11 @@ public interface CommentDAO {
             "and entity_type=#{entityType} order by id desc"})
     List<Comment> selectByEntity(@Param("entityId") int entityId,@Param("entityType") int entityType);
 
-    @Select({"select count(id) from ", TABLE_NAME," where entity_id = #{entityId} and entity_type = #{entityType}"})
-    int getCommentCount(@Param("entityId")int entityId,@Param("entityType")int entityType);
+    @Select({"select count(id) from ", TABLE_NAME," where entity_id = #{entityId} and entity_type = #{entityType} order by created_date desc limit #{offset}, #{limit}"})
+    int getCommentCount(@Param("entityId")int entityId,
+                        @Param("entityType")int entityType,
+                        @Param("offset") int offset,
+                        @Param("limit") int limit);
 
     @Update({"update ", TABLE_NAME," set status = #{status} where entity_id = #{entityId} and entity_type = #{entityType}"})
     void updateStatus(@Param("entityId")int entityId,@Param("entityType")int entityType,@Param("status")int status);

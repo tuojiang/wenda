@@ -37,4 +37,7 @@ public class MessageService {
     public List<Message> getConversationDetail(String conversationId, int offset, int limit){
         return messageDAO.getConversationDetail(conversationId,offset,limit);
     }
+    public void updateMessageStatus(int hasRead,String conversationId){
+        messageDAO.updateMessageStatus(hasRead,conversationId);
+    }
 }

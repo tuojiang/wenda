@@ -26,8 +26,8 @@ public class CommentService {
         commentDAO.updateStatus(entityId, entityType, 1);
     }
 
-    public int getCommentCount(int entityId,int entityType){
-        return commentDAO.getCommentCount(entityId,entityType);
+    public int getCommentCount(int entityId,int entityType,int offset,int limit){
+        return commentDAO.getCommentCount(entityId,entityType,offset,limit);
     }
 
     public int addComment(Comment comment){
