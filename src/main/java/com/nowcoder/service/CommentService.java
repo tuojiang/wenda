@@ -34,4 +34,7 @@ public class CommentService {
         return commentDAO.addComment(comment);
     }
 
+    public Comment getCommentById(int commentId) {
+        return commentDAO.getCommentById(commentId);
+    }
 }
