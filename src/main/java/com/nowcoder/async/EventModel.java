@@ -21,7 +21,11 @@ public class EventModel {
     public EventModel() {
     }
 
-    public EventModel SetExt(String key,String value){
+    public EventModel(EventType type) {
+        this.type =type;
+    }
+
+    public EventModel setExt(String key,String value){
         exts.put(key, value);
         return this;
     }

@@ -7,8 +7,10 @@ package com.nowcoder.async;
  * @Description: ${todo}
  */
 public enum EventType {
-    LOGIN(0),
-    COMMENT(1);
+    LIKE(0),
+    COMMENT(1),
+    LOGIN(2),
+    MAIL(3);
     private int value;
 
     EventType(int value) {
