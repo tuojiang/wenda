@@ -55,17 +55,22 @@ public class MailSender implements InitializingBean {
     @Override
     public void afterPropertiesSet() throws Exception {
         mailSender = new JavaMailSenderImpl();
+        // 邮箱账号
         mailSender.setUsername("421789740@qq.com");
-        mailSender.setPassword("74389593od");
-        mailSender.setHost("smtp.exmail.qq.com");
-        //mailSender.setHost("smtp.qq.com");
+        // QQ邮箱的授权码
+        mailSender.setPassword("ewwpzpegjefdbhid");
+        // QQ邮箱SMTP服务器地址
+        mailSender.setHost("smtp.qq.com");
+        // QQ邮箱端口号
         mailSender.setPort(465);
         mailSender.setProtocol("smtps");
+        // 设置编码格式
         mailSender.setDefaultEncoding("utf8");
         Properties javaMailProperties = new Properties();
+        // 开启SSL加密
         javaMailProperties.put("mail.smtp.ssl.enable", true);
+        // 开启请求认证
         javaMailProperties.put("mail.smtp.auth", true);
-        //javaMailProperties.put("mail.smtp.starttls.enable", true);
         mailSender.setJavaMailProperties(javaMailProperties);
     }
 }

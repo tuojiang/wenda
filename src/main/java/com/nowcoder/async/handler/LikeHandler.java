@@ -3,7 +3,6 @@ package com.nowcoder.async.handler;
 import com.nowcoder.async.EventHandler;
 import com.nowcoder.async.EventModel;
 import com.nowcoder.async.EventType;
-import com.nowcoder.model.HostHolder;
 import com.nowcoder.model.Message;
 import com.nowcoder.model.User;
 import com.nowcoder.service.MessageService;
@@ -42,7 +41,7 @@ public class LikeHandler implements EventHandler {
         message.setConversationId(fromId < toId ? String.format("%d_%d", fromId, toId) : String.format("%d_%d", toId, fromId));
         User user = userService.getUser(eventModel.getActionId());
         message.setContent("用户"+user.getName()
-                +"赞了你的评论，http://localhost:8080/question/"+eventModel.getExt("questionId"));
+                +"赞了你的评论，http://localhost:8081/question/"+eventModel.getExt("questionId"));
         messageService.addMessage(message);
     }
 
