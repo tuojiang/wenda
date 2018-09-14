@@ -40,4 +40,7 @@ public interface CommentDAO {
 
     @Select({"select count(id) from ",TABLE_NAME," where user_id = #{userId}"})
     int getUserCommentCount(int userId);
+
+    @Update({"update ",TABLE_NAME," set entity_id = #{entityId} where user_id = #{userId} and create_date = #{createDate}"})
+    int updateReviewComment(Comment comment);
 }

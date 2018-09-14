@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.nowcoder.dao.QuestionDAO">
-    <sql id="table">question</sql>
-    <sql id="selectFields">id, title, content, comment_count,created_date,user_id
+<mapper namespace="com.nowcoder.dao.QuestionReviewDAO">
+    <sql id="table">question_review</sql>
+    <sql id="selectFields">id, title, content, comment_count, created_date, user_id, has_read, questionId
     </sql>
-    <select id="selectLatestQuestions" resultType="com.nowcoder.model.Question">
+    <select id="selectLatestReviewQuestions" resultType="com.nowcoder.model.QuestionReview">
         SELECT
         <include refid="selectFields"/>
         FROM
@@ -14,7 +14,7 @@
         <if test="userId != 0">
             WHERE user_id = #{userId}
         </if>
-        ORDER BY created_date DESC
+        ORDER BY id DESC
         LIMIT #{offset},#{limit}
     </select>
 </mapper>

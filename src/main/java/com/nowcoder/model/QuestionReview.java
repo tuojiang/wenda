@@ -8,14 +8,32 @@ import java.util.Date;
  * @Author: chandler
  * @Description:
  */
-public class Question {
+public class QuestionReview {
     private int id;
     private String title;
     private String content;
     private Date createdDate;
     private int userId;
     private int commentCount;
+    private int hasRead;
 
+    public int getQuestionId() {
+        return questionId;
+    }
+
+    public void setQuestionId(int questionId) {
+        this.questionId = questionId;
+    }
+
+    private int questionId;
+
+    public int getHasRead() {
+        return hasRead;
+    }
+
+    public void setHasRead(int hasRead) {
+        this.hasRead = hasRead;
+    }
 
     public int getId() {
         return id;

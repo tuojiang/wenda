@@ -1,0 +1,35 @@
+#parse("header.html")
+<link rel="stylesheet" href="../styles/detail.css">
+<div class="zg-wrap zu-main clearfix with-indention-votebar" itemscope="" itemtype="http://schema.org/Question"
+     id="zh-single-question-page" data-urltoken="36301524" role="main">
+    <div class="zu-main-content">
+        <div class="zu-main-content-inner">
+            <meta itemprop="isTopQuestion" content="false">
+            <meta itemprop="visitsCount" content="402">
+
+            <a name="draft"></a>
+            <form action="/question/review" method="post" id="commentform">
+                <input type="hidden" name="questionId" value="$question.id"/>
+                <input type="hidden" name="commentCount" value="$question.commentCount"/>
+                <div id="zh-question-answer-form-wrap" class="zh-question-answer-form-wrap">
+                    <div class="zm-editable-editor-wrap" style="">
+                        <div class="zm-editable-editor-outer">
+                            <div class="zm-editable-editor-field-wrap">
+                                <input name="title" id="title" value="$!{question.title}" type="text" class="zm-editable-editor-field-element editable">
+                                <textarea name="content" id="content" class="zm-editable-editor-field-element editable"
+                                          style="font-style: italic;width:100%;">$!{question.content}</textarea>
+                            </div>
+                        </div>
+
+                        <div class="zm-command clearfix">
+                            <span class=" zg-right">
+                                <button type="submit" class="submit-button zg-btn-blue">发布回答</button></span>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+#parse("footer.html")

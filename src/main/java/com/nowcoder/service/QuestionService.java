@@ -37,6 +37,10 @@ public class QuestionService {
         return questionDAO.addQuestion(question) > 0 ? question.getId() : 0;
     }
 
+    public int updateQuestion(Question question){
+        return questionDAO.updateQuestion(question);
+    }
+
     public Question getQuestionById(int qid) {
         return questionDAO.getById(qid);
     }

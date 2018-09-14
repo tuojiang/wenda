@@ -1,10 +1,7 @@
 package com.nowcoder.controller;
 
 import com.nowcoder.model.*;
-import com.nowcoder.service.CommentService;
-import com.nowcoder.service.FollowService;
-import com.nowcoder.service.QuestionService;
-import com.nowcoder.service.UserService;
+import com.nowcoder.service.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +29,9 @@ public class HomeController {
     QuestionService questionService;
 
     @Autowired
+    QuestionReviewService questionReviewService;
+
+    @Autowired
     UserService userService;
 
     @Autowired
@@ -56,10 +56,42 @@ public class HomeController {
         return vos;
     }
 
+    private List<ViewObject> getReviewQuestions(int userId, int offset, int limit) {
+        List<QuestionReview> questionList = questionReviewService.getLatestQuestions(userId, offset, limit);
+        List<ViewObject> vos = new ArrayList<>();
+        for (QuestionReview questionReview : questionList) {
+            ViewObject vo = new ViewObject();
+            vo.set("question", questionReview);
+            vo.set("followCount", followService.getFollowerCount(EntityType.ENTITY_QUESTION, questionReview.getId()));
+            vo.set("user", userService.getUser(questionReview.getUserId()));
+            vos.add(vo);
+        }
+        return vos;
+    }
+
+    /**
+     * 审核模块
+     * @param model
+     * @param pop
+     * @return
+     */
+    @RequestMapping(path = {"/reviewquestion"}, method = {RequestMethod.GET, RequestMethod.POST})
+    public String reviewQuestionIndex(Model model,
+                        @RequestParam(value = "pop", defaultValue = "0") int pop) {
+        model.addAttribute("vos", getReviewQuestions(0, 0, 10));
+        if (hostHolder.getUser() != null) {
+            model.addAttribute("knownid", hostHolder.getUser().getId());
+        }
+        return "reviewquestionindex";
+    }
+
     @RequestMapping(path = {"/", "/index"}, method = {RequestMethod.GET, RequestMethod.POST})
     public String index(Model model,
                         @RequestParam(value = "pop", defaultValue = "0") int pop) {
         model.addAttribute("vos", getQuestions(0, 0, 10));
+        if (hostHolder.getUser() != null) {
+            model.addAttribute("knownid", hostHolder.getUser().getId());
+        }
         return "index";
     }
 
