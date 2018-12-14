@@ -16,6 +16,15 @@ public class Comment {
     private int entityType;
     private Date createdDate;
     private int status;
+    private String reason;
+
+    public String getReason() {
+        return reason;
+    }
+
+    public void setReason(String reason) {
+        this.reason = reason;
+    }
 
     public int getId() {
         return id;

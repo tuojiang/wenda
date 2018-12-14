@@ -15,7 +15,24 @@ public class Question {
     private Date createdDate;
     private int userId;
     private int commentCount;
+    private int status;
+    private String reason;
 
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    public String getReason() {
+        return reason;
+    }
+
+    public void setReason(String reason) {
+        this.reason = reason;
+    }
 
     public int getId() {
         return id;

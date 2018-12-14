@@ -53,7 +53,7 @@
                                                 <div class="zm-meta-panel">
                                                     <a data-follow="q:link" class="follow-link zg-follow meta-item" href="javascript:;" id="sfb-123114">
                                                         <i class="z-icon-follow"></i>关注问题</a>
-                                                    <a href="#" name="addcomment" class="meta-item toggle-comment js-toggleCommentBox">
+                                                    <a href="/question/$!{vo.question.id}" name="addcomment" class="meta-item toggle-comment js-toggleCommentBox">
                                                         <i class="z-icon-comment"></i>${vo.question.commentCount} 条评论</a>
                                                     #if ($vo.user.id == $knownid)
                                                     <a href="/question/edit/$!{vo.question.id}" name="editquestion" class="meta-item toggle-comment js-toggleCommentBox">
@@ -71,7 +71,7 @@
                         </div>
                         #end
                     </div>
-                    <a href="javascript:;" id="zh-load-more" data-method="next" class="zg-btn-white zg-r3px zu-button-more" style="">更多</a></div>
+                    <a href="/reload;" id="zh-load-more" data-method="next" class="zg-btn-white zg-r3px zu-button-more" style="">更多</a></div>
             </div>
         </div>
     </div>

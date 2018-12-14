@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,6 +43,8 @@ public class HomeController {
 
     @Autowired
     CommentService commentService;
+
+    private static int base = 20;
 
     private List<ViewObject> getQuestions(int userId, int offset, int limit) {
         List<Question> questionList = questionService.getLatestQuestions(userId, offset, limit);
@@ -89,6 +92,23 @@ public class HomeController {
     public String index(Model model,
                         @RequestParam(value = "pop", defaultValue = "0") int pop) {
         model.addAttribute("vos", getQuestions(0, 0, 10));
+        if (hostHolder.getUser() != null) {
+                model.addAttribute("knownid", hostHolder.getUser().getId());
+        }
+        return "index";
+    }
+
+    /**
+     * 加载更多
+     * @param model
+     * @param pop
+     * @return
+     */
+    @RequestMapping(path = {"/reload"}, method = {RequestMethod.GET, RequestMethod.POST})
+    public String reloadMore(Model model,
+                        @RequestParam(value = "pop", defaultValue = "10") int pop) {
+        base +=pop;
+        model.addAttribute("vos", getQuestions(0, 0, base));
         if (hostHolder.getUser() != null) {
             model.addAttribute("knownid", hostHolder.getUser().getId());
         }

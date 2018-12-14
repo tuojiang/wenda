@@ -10,10 +10,11 @@
         <include refid="selectFields"/>
         FROM
         <include refid="table"/>
-
+        where status = 2
         <if test="userId != 0">
-            WHERE user_id = #{userId}
+            and WHERE user_id = #{userId}
         </if>
+
         ORDER BY created_date DESC
         LIMIT #{offset},#{limit}
     </select>
